@@ -6,6 +6,8 @@
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-blueviolet)
 ![Zero Dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen)
 
+**English** | [中文](README_CN.md) | [日本語](README_JA.md)
+
 ---
 
 ## What It Does
