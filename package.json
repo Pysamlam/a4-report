@@ -1,0 +1,24 @@
+{
+  "name": "@pysamlam/a4-report",
+  "version": "1.1.0",
+  "description": "Generate professional A4 consulting reports in McKinsey/BCG/Bain style. Zero dependencies, print-to-PDF optimized HTML reports.",
+  "main": "SKILL.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pysamlam/a4-report.git"
+  },
+  "keywords": [
+    "claude-code",
+    "claude-code-skill",
+    "consulting",
+    "report",
+    "a4",
+    "pdf",
+    "mckinsey",
+    "analysis"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

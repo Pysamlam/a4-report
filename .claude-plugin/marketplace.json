@@ -3,8 +3,8 @@
   "name": "a4-report",
   "description": "Generate professional A4 paper style consulting reports and analysis documents in McKinsey/BCG/Bain style.",
   "owner": {
-    "name": "anonymous",
-    "url": "https://github.com/anonymous"
+    "name": "Pysamlam",
+    "url": "https://github.com/Pysamlam/a4-report"
   },
   "plugins": [
     {
