@@ -226,15 +226,6 @@ a4-report-main/
 
 ---
 
-## 不适用场景
-
-| 需求 | 推荐使用 |
-|------|---------|
-| 解析并可视化财报（10-K、10-Q、年报） | `analysis-finrpt` |
-| 快速制作幻灯片或演示文稿 | `frontend-slides` |
-
----
-
 ## 环境要求
 
 - [Claude Code](https://claude.ai/claude-code) CLI

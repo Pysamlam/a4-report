@@ -223,15 +223,6 @@ The skill uses **progressive disclosure** — only the files needed for the curr
 
 ---
 
-## Not This Skill?
-
-| Need | Use Instead |
-|------|------------|
-| Parse & visualize an earnings report (10-K, 10-Q, 年报) | `analysis-finrpt` |
-| Quick slide deck or presentation | `frontend-slides` |
-
----
-
 ## Requirements
 
 - [Claude Code](https://claude.ai/claude-code) CLI

@@ -228,15 +228,6 @@ a4-report-main/
 
 ---
 
-## このスキルが向かないケース
-
-| ニーズ | 代わりに使用 |
-|-------|------------|
-| 決算報告書のパース・可視化（10-K、10-Q、年次報告書） | `analysis-finrpt` |
-| スライドデッキやプレゼンテーションの作成 | `frontend-slides` |
-
----
-
 ## 動作要件
 
 - [Claude Code](https://claude.ai/claude-code) CLI
