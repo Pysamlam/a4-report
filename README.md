@@ -26,10 +26,19 @@
 ### Step 1 — Install
 
 **Option A: Manual**
+> Download the repo as a ZIP, unzip it, then place all files into the skill folder:
+
+![Download ZIP screenshot](screenshots/download-zipfile.png)
+
 ```bash
+# 1. Download this repo as ZIP and unzip it
+# 2. Create the target folder (or create it manually)
 mkdir -p ~/.claude/skills/a4-report
+# 3. Copy all unzipped files into it (or copy manually)
 cp SKILL.md STYLE_PRESETS.md a4-report-template.md ~/.claude/skills/a4-report/
 ```
+
+![Installation path screenshot](screenshots/install-path.png)
 
 ### Step 2 — Invoke
 
@@ -51,6 +60,7 @@ McKinsey style, 10-15 pages, for internal strategy review.
 ### Step 3 — Get Your Report
 
 Claude will guide you through a brief Q&A, generate the HTML file, and open it automatically. Print to PDF from your browser.
+![Report demo screenshot](screenshots/report-demo.png)
 
 ---
 

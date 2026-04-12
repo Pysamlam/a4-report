@@ -27,10 +27,19 @@
 ### Step 1 — インストール
 
 **方法 A：手動インストール**
+> ZIP をダウンロード → 解凍 → ターゲットフォルダに入れる：
+
+![Download ZIP screenshot](screenshots/download-zipfile.png)
+
 ```bash
+# 1. このリポジトリを ZIP でダウンロードし解凍
+# 2. ターゲットフォルダを作成（手動でも可）
 mkdir -p ~/.claude/skills/a4-report
+# 3. 解凍した全ファイルをコピー（手動でも可）
 cp SKILL.md STYLE_PRESETS.md a4-report-template.md ~/.claude/skills/a4-report/
 ```
+
+![インストールパスScreenshot](screenshots/install-path.png)
 
 ### Step 2 — 呼び出し
 
@@ -53,6 +62,7 @@ McKinsey style, 10-15 pages, for internal strategy review.
 ### Step 3 — レポート受け取り
 
 Claude が簡単な確認事項を質問し、HTML ファイルを生成して自動で開きます。ブラウザから PDF に印刷して完成です。
+![レポートデモScreenshot](screenshots/report-demo.png)
 
 ---
 
