@@ -26,13 +26,7 @@
 
 ### Step 1 — インストール
 
-**方法 A：プラグインマーケットプレイス**
-```bash
-/plugin marketplace add samgor/a4-report
-/plugin install a4-report@a4-report
-```
-
-**方法 B：手動インストール**
+**方法 A：手動インストール**
 ```bash
 mkdir -p ~/.claude/skills/a4-report
 cp SKILL.md STYLE_PRESETS.md a4-report-template.md ~/.claude/skills/a4-report/
