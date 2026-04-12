@@ -1,0 +1,34 @@
+{
+  "name": "a4-report",
+  "version": "1.1.0",
+  "description": "Generate professional A4 paper style consulting reports in McKinsey/BCG/Bain aesthetic. Print-optimized HTML reports for market analysis, competitive intelligence, strategic planning, and business reviews.",
+  "author": {
+    "name": "anonymous"
+  },
+  "trigger": [
+    "写报告",
+    "生成报告",
+    "帮我写报告",
+    "麦肯锡风格",
+    "BCG风格",
+    "贝恩风格",
+    "咨询报告",
+    "分析报告",
+    "市场分析报告",
+    "竞品分析报告",
+    "战略报告",
+    "A4报告",
+    "打印报告",
+    "PDF报告",
+    "create report",
+    "generate report",
+    "consulting report",
+    "A4 report",
+    "professional report",
+    "business report",
+    "market analysis report",
+    "competitive analysis report",
+    "strategic report",
+    "white paper"
+  ]
+}

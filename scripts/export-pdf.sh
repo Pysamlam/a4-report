@@ -1,0 +1,26 @@
+#!/bin/bash
+# export-pdf.sh - Guide for exporting A4 report to PDF
+# Note: This skill uses browser print-to-PDF (no external tools needed)
+
+echo "=========================================="
+echo "A4 Report: Export to PDF Instructions"
+echo "=========================================="
+echo ""
+echo "This skill generates HTML reports optimized for browser-based PDF export."
+echo "No external tools are required."
+echo ""
+echo "Steps to export:"
+echo "1. Open the generated HTML file in Chrome/Safari/Firefox"
+echo "2. Press Cmd+P (Mac) or Ctrl+P (Windows)"
+echo "3. Select 'Save as PDF' as destination"
+echo "4. Paper Size: A4"
+echo "5. Orientation: Portrait"
+echo "6. Margins: Minimum"
+echo "7. Options: Check 'Background graphics'"
+echo "8. Click Save"
+echo ""
+echo "For best results:"
+echo "- Use Chrome for most accurate print output"
+echo "- Ensure 'Background graphics' is checked"
+echo "- Set margins to Minimum for maximum content area"
+echo ""

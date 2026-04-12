@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "a4-report",
+  "description": "Generate professional A4 paper style consulting reports and analysis documents in McKinsey/BCG/Bain style.",
+  "owner": {
+    "name": "anonymous",
+    "url": "https://github.com/anonymous"
+  },
+  "plugins": [
+    {
+      "name": "a4-report",
+      "description": "Zero-dependency HTML report generator for professional A4 consulting reports. Features McKinsey/BCG/Bain visual styles, CSS-based charts, print-to-PDF workflow.",
+      "source": "./plugins/a4-report",
+      "category": "productivity",
+      "tags": ["report", "consulting", "analysis", "pdf", "a4", "mckinsey", "presentation"]
+    }
+  ]
+}
