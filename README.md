@@ -1,5 +1,5 @@
 # A4 Report — Consulting-Grade Reports for Claude Code
-
+[中文](README_CN.md) | [日本語](README_JA.md) | English
 > Generate professional A4 consulting reports in McKinsey / BCG / Bain style — zero design skills required, zero dependencies, print-to-PDF in seconds.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
