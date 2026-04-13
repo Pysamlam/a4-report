@@ -25,7 +25,13 @@
 
 ### Step 1 — Install
 
-**Option A: Manual**
+**Option A: npm (Recommended)**
+
+```bash
+npx skills add @pysamlam/a4-report
+```
+
+**Option B: Manual**
 > Download the repo as a ZIP, unzip it, then place all files into the skill folder:
 
 ![Download ZIP screenshot](screenshots/download-zipfile.png)

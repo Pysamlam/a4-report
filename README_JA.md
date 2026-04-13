@@ -26,7 +26,13 @@
 
 ### Step 1 — インストール
 
-**方法 A：手動インストール**
+**方法 A：npm（推奨）**
+
+```bash
+npx skills add @pysamlam/a4-report
+```
+
+**方法 B：手動インストール**
 > ZIP をダウンロード → 解凍 → ターゲットフォルダに入れる：
 
 ![Download ZIP screenshot](screenshots/download-zipfile.png)

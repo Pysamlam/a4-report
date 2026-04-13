@@ -26,7 +26,14 @@
 
 ### 第一步 — 安装
 
-**方式 A：手动安装**
+**方式 A：npm 一键安装（推荐）**
+
+```bash
+npx skills add @pysamlam/a4-report
+```
+
+**方式 B：手动安装**
+
 > 下载 ZIP 包 → 解压 → 放入目标文件夹：
 
 ![下载zip包示例截图](screenshots/download-zipfile.png)
