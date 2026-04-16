@@ -490,7 +490,8 @@ Reference architecture for generating professional A4 print-ready consulting rep
         /* ===========================================
            LAYOUT: TWO COLUMNS
            =========================================== */
-        .two-columns {
+        .two-columns,
+        .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12pt;
@@ -627,6 +628,127 @@ Reference architecture for generating professional A4 print-ready consulting rep
         @media print {
             .print-button {
                 display: none;
+            }
+        }
+
+        /* ===========================================
+           PRINT OPTIMIZATION — PDF EXPORT FIXES
+           CRITICAL: Prevent grid-to-stack collapse
+           =========================================== */
+        @media print {
+            /* 1. 强制两列布局在打印时保持 grid */
+            .two-col,
+            .two-columns {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: auto auto !important;
+                gap: 8pt !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* 2. 强制三列/四列布局保持 grid */
+            .three-columns {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .metrics-grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 6pt !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* 3. SVG 图表高度压缩 (235px → 200px) */
+            .chart-svg {
+                height: 200px !important;
+                max-height: 200px !important;
+            }
+
+            /* 4. 图表容器 padding 收紧 (8pt → 6pt) */
+            .chart-container {
+                padding: 6pt !important;
+                margin: 4pt 0 !important;
+            }
+
+            /* 5. chart-guide 和 key-insights 紧凑化 */
+            .chart-guide,
+            .key-insights {
+                padding: 6pt 10pt !important;
+                margin: 4pt 0 !important;
+                font-size: 8pt !important;
+            }
+
+            .chart-guide ul,
+            .key-insights ul {
+                margin: 2pt 0 0 12pt !important;
+            }
+
+            .chart-guide li,
+            .key-insights li {
+                margin-bottom: 1pt !important;
+            }
+
+            /* 6. 图例项压缩 (9pt → 8.5pt, margin 4pt → 3pt) */
+            .chart-legend,
+            .legend {
+                font-size: 8.5pt !important;
+            }
+
+            .legend-item {
+                font-size: 8.5pt !important;
+                margin: 3pt 0 !important;
+            }
+
+            /* 7. 详细拆解卡片统一收紧 */
+            .detail-card,
+            .拆解-card,
+            .finding-box {
+                gap: 8pt !important;
+                margin-top: 4pt !important;
+                padding: 6pt 8pt !important;
+            }
+
+            /* 8. 防止页面断在重要元素中间 */
+            .finding-box,
+            .recommendation,
+            .highlight-positive,
+            .highlight-negative,
+            .executive-summary {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* 9. 确保背景色正确打印 */
+            * {
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+
+            /* 10. 进一步收紧行间距节约空间 */
+            p {
+                margin-bottom: 4pt !important;
+            }
+
+            h2 {
+                margin-top: 8pt !important;
+                margin-bottom: 4pt !important;
+            }
+
+            h3 {
+                margin-top: 6pt !important;
+                margin-bottom: 3pt !important;
+            }
+
+            /* 11. 内联 grid 样式也需要强制保持两列 */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8pt !important;
             }
         }
 
@@ -994,10 +1116,27 @@ When the user clicks "Print / Save as PDF":
 
 ## Chart Implementation Notes
 
-**⚠️ CRITICAL: Two things must be done for proper PDF printing:**
+**⚠️ CRITICAL: Three things must be done for proper PDF printing:**
 
 1. **Use SVG for all charts** — NOT CSS divs
 2. **Add `print-color-adjust: exact` globally** — or background colors won't print
+3. **Add `@media print` grid rules** — or two-column layouts collapse to single column
+
+### ⚠️ The Grid-Collapse-When-Printing Problem
+
+By default, browsers may degrade CSS grid layouts to single-column flow when printing. This causes `.two-col` and `.two-columns` elements (with side-by-side charts) to stack vertically instead.
+
+**Required CSS fix — the template includes this `@media print` rule:**
+```css
+@media print {
+    .two-col,
+    .two-columns {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        page-break-inside: avoid !important;
+    }
+}
+```
 
 ### ⚠️ The Print Background Color Problem
 
@@ -1085,10 +1224,16 @@ All charts MUST use inline SVG for print compatibility:
 .chart-svg {
     width: 100%;
     height: auto;
+    max-height: 200px;  /* 压缩高度防止打印时被截断 */
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
 }
 ```
+
+**SVG Height Optimization for Print:**
+- Maximum height for print: **200px** (NOT 235px)
+- The template's `@media print` rule forces `height: 200px !important`
+- This ensures charts don't get cut off when printing
 
 ### Chart Types & SVG Implementation
 
@@ -1367,5 +1512,6 @@ When a report has been audited and contains corrections or flagged data:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.1 | 2026-04-16 | Added @media print rules to prevent grid collapse in PDF; compressed SVG height to 200px; tightened spacing for print density |
 | 2.0 | 2026-04-11 | Added audit markers, waterfall chart, comparison table, KPI dashboard |
 | 1.0 | 2026-01-01 | Initial template release |

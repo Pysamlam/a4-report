@@ -815,3 +815,157 @@ Example:
 - ❌ Mixing hierarchical levels in lists
 - ❌ Chart without explanation — readers won't understand the significance
 - ❌ Report without knowing the audience — language/depth may be wrong
+
+---
+
+## PDF 打印专项优化 ⚠️ 必读
+
+**核心问题：并排图表在 PDF 导出时变成堆叠**
+
+浏览器打印时，CSS grid 布局可能被降级为单列，导致 `.two-col`/`.two-columns` 的两列并排图表变成垂直堆叠。
+
+### 解决方案：打印专用 CSS 强制保持 Grid 布局
+
+**在模板 CSS 中必须添加以下 @media print 规则：**
+
+```css
+/* ===========================================
+   PRINT OPTIMIZATION — CRITICAL FOR PDF EXPORT
+   =========================================== */
+
+/* 1. 强制两列布局在打印时保持 grid */
+@media print {
+    .two-col,
+    .two-columns,
+    [style*="grid-template-columns: 1fr 1fr"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-column-gap: 8pt !important;
+    }
+}
+
+/* 2. SVG 图表高度压缩 — 每行间距从 18px 减到 16px */
+.chart-svg {
+    height: 200px !important;  /* 原 235px */
+}
+
+/* 3. 容器 padding 收紧 */
+.chart-container,
+.highlight-box,
+.insight-box {
+    padding: 6pt !important;  /* 原 8pt */
+}
+
+/* 4. 图例字体和间距压缩 */
+.legend-item {
+    font-size: 8.5pt !important;  /* 原 9pt */
+    margin: 3pt !important;  /* 原 4pt */
+}
+
+/* 5. 详细拆解卡片统一收紧 */
+.detail-card,
+.analysis-card,
+拆解-card {
+    gap: 8pt !important;
+    margin-top: 4pt !important;
+    padding: 6pt !important;
+}
+```
+
+### 完整打印优化 CSS（直接复制到模板）
+
+```css
+/* ===========================================
+   PRINT MEDIA QUERIES — PDF EXPORT FIXES
+   =========================================== */
+@media print {
+    /* 强制保持两列 grid 布局 */
+    .two-col,
+    .two-columns {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 8pt !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* 强制保持三列 grid 布局 */
+    .three-columns,
+    .metrics-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* SVG 高度压缩 */
+    .chart-svg {
+        height: 200px !important;
+        max-height: 200px !important;
+    }
+
+    /* 图表容器 padding 收紧 */
+    .chart-container {
+        padding: 6pt !important;
+        margin: 4pt 0 !important;
+    }
+
+    /* chart-guide 和 key-insights 紧凑化 */
+    .chart-guide,
+    .key-insights {
+        padding: 6pt 10pt !important;
+        margin: 4pt 0 !important;
+        font-size: 8pt !important;
+    }
+
+    /* 图例项压缩 */
+    .legend-item {
+        font-size: 8.5pt !important;
+        margin: 3pt 0 !important;
+    }
+
+    /* 详细拆解卡片 */
+    .detail-card,
+    .拆解-card {
+        gap: 8pt !important;
+        margin-top: 4pt !important;
+        padding: 6pt !important;
+    }
+
+    /* 防止页面断在 grid 中间 */
+    .two-col,
+    .two-columns,
+    .chart-container,
+    .finding-box,
+    .recommendation {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* 确保背景色打印 */
+    * {
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+}
+```
+
+### 尺寸压缩对照表
+
+| 元素 | 原值 | 新值 | 说明 |
+|------|------|------|------|
+| SVG 高度 | 235px | 200px | 图表行间距 18→16px |
+| 容器 padding | 8pt | 6pt | 进一步收紧 |
+| 图例字体 | 9pt | 8.5pt | 略为压缩 |
+| 图例 margin | 4pt | 3pt | 减小间距 |
+| 拆解卡片 gap | (原值) | 8pt | 统一 |
+| 拆解卡片 margin-top | (原值) | 4pt | 减小 |
+
+### 打印设置检查清单
+
+导出 PDF 前确认：
+- [ ] 打印设置中 **"背景图形"** 已勾选
+- [ ] 纸张尺寸选择 **A4**
+- [ ] 边距设置为 **"最小值"** 或 **"无"**
+- [ ] 方向为 **"纵向"**
+- [ ] 取消勾选"页眉页脚"(使用 CSS 自定义 header/footer)
